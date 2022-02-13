@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38D6187427B8F93700E00CB5 /* LoginValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6187327B8F93700E00CB5 /* LoginValidation.swift */; };
 		38DA422227B689B400FD9D33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA422127B689B400FD9D33 /* AppDelegate.swift */; };
 		38DA422427B689B400FD9D33 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA422327B689B400FD9D33 /* SceneDelegate.swift */; };
 		38DA422627B689B400FD9D33 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA422527B689B400FD9D33 /* LoginViewController.swift */; };
@@ -15,9 +16,27 @@
 		38DA422E27B689B600FD9D33 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38DA422C27B689B600FD9D33 /* LaunchScreen.storyboard */; };
 		38DA423627B6982500FD9D33 /* Extensions+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA423527B6982500FD9D33 /* Extensions+UIView.swift */; };
 		38DA423827B6A08C00FD9D33 /* DevExamListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DA423727B6A08C00FD9D33 /* DevExamListViewController.swift */; };
+		38F7C8EC27B7E47000D628DD /* NetworkWorkingLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7C8EB27B7E47000D628DD /* NetworkWorkingLogic.swift */; };
+		38F7C8EE27B7E6D400D628DD /* AuthWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7C8ED27B7E6D400D628DD /* AuthWorker.swift */; };
+		38F7C8F027B7E74400D628DD /* PhoneMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7C8EF27B7E74400D628DD /* PhoneMask.swift */; };
+		38F7C8F327B7EA8B00D628DD /* AuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7C8F227B7EA8B00D628DD /* AuthInteractor.swift */; };
+		38F7C8F527B7FE5300D628DD /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7C8F427B7FE5300D628DD /* AuthPresenter.swift */; };
+		38F7C8FD27B807B900D628DD /* LoginTestingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7C8FC27B807B900D628DD /* LoginTestingAppUITests.swift */; };
+		38F7C8FF27B807B900D628DD /* LoginTestingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F7C8FE27B807B900D628DD /* LoginTestingAppUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		38F7C90027B807B900D628DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38DA421627B689B400FD9D33 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38DA421D27B689B400FD9D33;
+			remoteInfo = LoginTestingApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		38D6187327B8F93700E00CB5 /* LoginValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidation.swift; sourceTree = "<group>"; };
 		38DA421E27B689B400FD9D33 /* LoginTestingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginTestingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DA422127B689B400FD9D33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38DA422327B689B400FD9D33 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,10 +47,25 @@
 		38DA422F27B689B600FD9D33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38DA423527B6982500FD9D33 /* Extensions+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView.swift"; sourceTree = "<group>"; };
 		38DA423727B6A08C00FD9D33 /* DevExamListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevExamListViewController.swift; sourceTree = "<group>"; };
+		38F7C8EB27B7E47000D628DD /* NetworkWorkingLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWorkingLogic.swift; sourceTree = "<group>"; };
+		38F7C8ED27B7E6D400D628DD /* AuthWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWorker.swift; sourceTree = "<group>"; };
+		38F7C8EF27B7E74400D628DD /* PhoneMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneMask.swift; sourceTree = "<group>"; };
+		38F7C8F227B7EA8B00D628DD /* AuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInteractor.swift; sourceTree = "<group>"; };
+		38F7C8F427B7FE5300D628DD /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		38F7C8FA27B807B900D628DD /* LoginTestingAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoginTestingAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		38F7C8FC27B807B900D628DD /* LoginTestingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTestingAppUITests.swift; sourceTree = "<group>"; };
+		38F7C8FE27B807B900D628DD /* LoginTestingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTestingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		38DA421B27B689B400FD9D33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		38F7C8F727B807B900D628DD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				38DA422027B689B400FD9D33 /* LoginTestingApp */,
+				38F7C8FB27B807B900D628DD /* LoginTestingAppUITests */,
 				38DA421F27B689B400FD9D33 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				38DA421E27B689B400FD9D33 /* LoginTestingApp.app */,
+				38F7C8FA27B807B900D628DD /* LoginTestingAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,17 +96,40 @@
 		38DA422027B689B400FD9D33 /* LoginTestingApp */ = {
 			isa = PBXGroup;
 			children = (
+				38F7C8EB27B7E47000D628DD /* NetworkWorkingLogic.swift */,
+				38F7C8EF27B7E74400D628DD /* PhoneMask.swift */,
+				38F7C8F127B7EA6F00D628DD /* Auth */,
 				38DA422127B689B400FD9D33 /* AppDelegate.swift */,
 				38DA422327B689B400FD9D33 /* SceneDelegate.swift */,
-				38DA422527B689B400FD9D33 /* LoginViewController.swift */,
 				38DA422727B689B400FD9D33 /* Main.storyboard */,
 				38DA422A27B689B600FD9D33 /* Assets.xcassets */,
 				38DA422C27B689B600FD9D33 /* LaunchScreen.storyboard */,
 				38DA422F27B689B600FD9D33 /* Info.plist */,
 				38DA423527B6982500FD9D33 /* Extensions+UIView.swift */,
 				38DA423727B6A08C00FD9D33 /* DevExamListViewController.swift */,
+				38D6187327B8F93700E00CB5 /* LoginValidation.swift */,
 			);
 			path = LoginTestingApp;
+			sourceTree = "<group>";
+		};
+		38F7C8F127B7EA6F00D628DD /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				38F7C8ED27B7E6D400D628DD /* AuthWorker.swift */,
+				38F7C8F227B7EA8B00D628DD /* AuthInteractor.swift */,
+				38F7C8F427B7FE5300D628DD /* AuthPresenter.swift */,
+				38DA422527B689B400FD9D33 /* LoginViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		38F7C8FB27B807B900D628DD /* LoginTestingAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				38F7C8FC27B807B900D628DD /* LoginTestingAppUITests.swift */,
+				38F7C8FE27B807B900D628DD /* LoginTestingAppUITestsLaunchTests.swift */,
+			);
+			path = LoginTestingAppUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,6 +152,24 @@
 			productReference = 38DA421E27B689B400FD9D33 /* LoginTestingApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		38F7C8F927B807B900D628DD /* LoginTestingAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38F7C90227B807B900D628DD /* Build configuration list for PBXNativeTarget "LoginTestingAppUITests" */;
+			buildPhases = (
+				38F7C8F627B807B900D628DD /* Sources */,
+				38F7C8F727B807B900D628DD /* Frameworks */,
+				38F7C8F827B807B900D628DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38F7C90127B807B900D628DD /* PBXTargetDependency */,
+			);
+			name = LoginTestingAppUITests;
+			productName = LoginTestingAppUITests;
+			productReference = 38F7C8FA27B807B900D628DD /* LoginTestingAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -105,6 +182,10 @@
 				TargetAttributes = {
 					38DA421D27B689B400FD9D33 = {
 						CreatedOnToolsVersion = 13.1;
+					};
+					38F7C8F927B807B900D628DD = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 38DA421D27B689B400FD9D33;
 					};
 				};
 			};
@@ -122,6 +203,7 @@
 			projectRoot = "";
 			targets = (
 				38DA421D27B689B400FD9D33 /* LoginTestingApp */,
+				38F7C8F927B807B900D628DD /* LoginTestingAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -137,6 +219,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		38F7C8F827B807B900D628DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -144,15 +233,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38F7C8F527B7FE5300D628DD /* AuthPresenter.swift in Sources */,
+				38F7C8F027B7E74400D628DD /* PhoneMask.swift in Sources */,
 				38DA422627B689B400FD9D33 /* LoginViewController.swift in Sources */,
 				38DA422227B689B400FD9D33 /* AppDelegate.swift in Sources */,
 				38DA423627B6982500FD9D33 /* Extensions+UIView.swift in Sources */,
+				38F7C8EC27B7E47000D628DD /* NetworkWorkingLogic.swift in Sources */,
+				38F7C8F327B7EA8B00D628DD /* AuthInteractor.swift in Sources */,
+				38F7C8EE27B7E6D400D628DD /* AuthWorker.swift in Sources */,
+				38D6187427B8F93700E00CB5 /* LoginValidation.swift in Sources */,
 				38DA423827B6A08C00FD9D33 /* DevExamListViewController.swift in Sources */,
 				38DA422427B689B400FD9D33 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		38F7C8F627B807B900D628DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38F7C8FD27B807B900D628DD /* LoginTestingAppUITests.swift in Sources */,
+				38F7C8FF27B807B900D628DD /* LoginTestingAppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		38F7C90127B807B900D628DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38DA421D27B689B400FD9D33 /* LoginTestingApp */;
+			targetProxy = 38F7C90027B807B900D628DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		38DA422727B689B400FD9D33 /* Main.storyboard */ = {
@@ -346,6 +458,52 @@
 			};
 			name = Release;
 		};
+		38F7C90327B807B900D628DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WSCHZVTX6D;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maximshevtsov.LoginTestingAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LoginTestingApp;
+			};
+			name = Debug;
+		};
+		38F7C90427B807B900D628DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WSCHZVTX6D;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maximshevtsov.LoginTestingAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LoginTestingApp;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -363,6 +521,15 @@
 			buildConfigurations = (
 				38DA423327B689B600FD9D33 /* Debug */,
 				38DA423427B689B600FD9D33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		38F7C90227B807B900D628DD /* Build configuration list for PBXNativeTarget "LoginTestingAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38F7C90327B807B900D628DD /* Debug */,
+				38F7C90427B807B900D628DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

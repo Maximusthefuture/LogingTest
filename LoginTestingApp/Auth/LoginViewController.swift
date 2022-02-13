@@ -7,8 +7,18 @@
 
 import UIKit
 
+
+protocol AuthDisplayLogic: AnyObject {
+    func displayPhoneMask(phoneMask: String)
+    func showAlert()
+  
+}
+
 class LoginViewController: UIViewController {
     
+    //TEST
+    var test = AuthWorker()
+    var interactor: AuthBusinessLogic?
     lazy var stackView = UIStackView(arrangedSubviews: [companyLogo, phoneNumberTextField, passwordTextField, singInButton])
     
     let companyLogo: UIImageView = {
@@ -31,6 +41,8 @@ class LoginViewController: UIViewController {
         let tf = UITextField()
 //        tf.backgroundColor = .red
         tf.placeholder = "Password"
+//        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        tf.isSecureTextEntry = true
         return tf
     }()
     
@@ -43,6 +55,8 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -52,23 +66,51 @@ class LoginViewController: UIViewController {
         let bottomLine = CALayer()
         bottomLine.frame = CGRect(x: 0, y: phoneNumberTextField.frame.height - 1, width: phoneNumberTextField.frame.width, height: 2)
         bottomLine.backgroundColor = UIColor.gray.cgColor
+        viewsInit()
+        setupNotificationObserver()
+        setupTapGesture()
+        setup()
+//        requestToFetchMask()
+        
+    }
+    
+    private func requestToFetchMask() {
+        interactor?.getPhoneMask(request: "Request")
+    }
+    
+    
+    fileprivate func viewsInit() {
         phoneNumberTextField.borderStyle = .none
-        phoneNumberTextField.layer.addSublayer(bottomLine)
+//        phoneNumberTextField.layer.addSublayer(bottomLine)
         passwordTextField.borderStyle = .none
-        passwordTextField.layer.addSublayer(bottomLine)
-//        stackView.alignment = .center
+//        passwordTextField.layer.addSublayer(bottomLine)
+        //        stackView.alignment = .center
         stackView.distribution = .fillProportionally
         navigationController?.navigationBar.isHidden = true
         stackView.spacing = 10
-//        companyLogo.translatesAutoresizingMaskIntoConstraints = false
+        //        companyLogo.translatesAutoresizingMaskIntoConstraints = false
         phoneNumberTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         passwordTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         singInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         stackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 16))
-        setupNotificationObserver()
-        setupTapGesture()
-    
     }
+    
+    
+    private func setup() {
+        let interactor = AuthInteractor()
+        let presenter = AuthPresenter()
+//        let router = AuthRouter()
+        interactor.presenter = presenter
+        presenter.viewController = self
+        self.interactor = interactor
+//        router.viewController = self
+//        router.dataStore = interactor
+
+    }
+    private func login() {
+//        let request = Login.Login.Request(username: "Captain Jack Sparrow", password: "123456")
+        interactor?.singInUser(phoneNumber: phoneNumberTextField.text ?? "", password: passwordTextField.text ?? "")
+       }
     
     fileprivate func setupNotificationObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -76,10 +118,11 @@ class LoginViewController: UIViewController {
     }
     
     @objc fileprivate func handleSingIn() {
-        let vc = DevExamListViewController()
-        let navController = UINavigationController(rootViewController: vc)
-        navController.modalPresentationStyle = .fullScreen
-        present(navController, animated: true)
+//        let vc = DevExamListViewController()
+//        let navController = UINavigationController(rootViewController: vc)
+//        navController.modalPresentationStyle = .fullScreen
+//        present(navController, animated: true)
+        login()
     }
     
     @objc fileprivate func handleKeyboardHide() {
@@ -108,5 +151,27 @@ class LoginViewController: UIViewController {
        
     }
 
+}
+
+extension LoginViewController: AuthDisplayLogic {
+    func showAlert() {
+        DispatchQueue.main.async {
+            var alert = UIAlertController(title: "Wrong username or password", message: "Try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: {_ in
+                self.phoneNumberTextField.text = nil
+                self.passwordTextField.text = nil
+            }))
+            self.present(alert, animated: true)
+          
+        }
+       
+        
+    }
+    
+    func displayPhoneMask(phoneMask: String) {
+        DispatchQueue.main.async {
+            self.phoneNumberTextField.text = phoneMask
+        }
+    }
 }
 
