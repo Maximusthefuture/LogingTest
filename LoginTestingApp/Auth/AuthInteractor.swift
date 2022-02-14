@@ -41,7 +41,6 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
             if let success = success {
                 self.presenter?.presentSignInData(isSuccess: success.success)
             }
-          
         }
         
     }

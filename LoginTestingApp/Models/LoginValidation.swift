@@ -7,6 +7,6 @@
 
 import Foundation
 
-class LoginValidation: Decodable {
+struct LoginValidation: Codable {
     let success: Bool
 }

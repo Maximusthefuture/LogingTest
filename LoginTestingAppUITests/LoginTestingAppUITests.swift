@@ -23,18 +23,48 @@ class LoginTestingAppUITests: XCTestCase {
 //        app = nil
     }
     
-    func testLogin() {
-        var button = app.textFields["Phone Number"]
-        button.waitForExistence(timeout: 3)
-        button.tap()
-        button.typeText("12312312")
-        XCUIApplication().windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
-        let singInButton = XCUIApplication().buttons["Sing In"]
-        singInButton.waitForExistence(timeout: 2)
-        singInButton.tap()
+    func testLoginFailable() {
+        let phoneTextField = app.textFields["Phone Number"]
+        let passwordTextField = app.secureTextFields["Password"]
        
+        phoneTextField.tap()
+        phoneTextField.typeText("12312312")
+        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
+       
+        passwordTextField.tap()
+        passwordTextField.typeText("devExam111")
+    
         
+        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
+        let singInButton = XCUIApplication().buttons["Sing In"]
+       
+        singInButton.tap()
         
+        let alert = app.alerts["Error"]
+        let exists = NSPredicate(format: "exists == 1")
+        expectation(for: exists, evaluatedWith: alert, handler: nil)
+        waitForExpectations(timeout: 2, handler: nil)
+        alert.buttons["Cancel"].tap()
+        XCTAssert(singInButton.waitForExistence(timeout: 2))
+    
+    }
+    
+    func testLogicCompleted() {
+        let phoneTextField = app.textFields["Phone Number"]
+        let passwordTextField = app.secureTextFields["Password"]
+       
+        phoneTextField.tap()
+        phoneTextField.typeText("79005868675")
+        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
+       
+        passwordTextField.tap()
+        passwordTextField.typeText("devExam18")
+    
+        
+        app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.tap()
+        let singInButton = XCUIApplication().buttons["Sing In"]
+        
+        singInButton.tap()
         
     }
 

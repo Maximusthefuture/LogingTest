@@ -96,9 +96,9 @@ extension UIView {
             centerXAnchor.constraint(equalTo: superviewCenterXAnchor).isActive = true
         }
         
-//        if let superviewCenterYAnchor = superview?.centerYAnchor {
-//            centerYAnchor.constraint(equalTo: superviewCenterYAnchor).isActive = true
-//        }
+        //        if let superviewCenterYAnchor = superview?.centerYAnchor {
+        //            centerYAnchor.constraint(equalTo: superviewCenterYAnchor).isActive = true
+        //        }
         if let superViewTopAnchor = superview?.topAnchor {
             topAnchor.constraint(equalTo: superViewTopAnchor, constant: padding.top).isActive = true
         }
@@ -116,7 +116,7 @@ extension UIView {
         if let superviewCenterXAnchor = superview?.centerXAnchor {
             centerXAnchor.constraint(equalTo: superviewCenterXAnchor).isActive = true
         }
-
+        
         if let superViewBottomAnchor = superview?.safeAreaLayoutGuide.bottomAnchor {
             bottomAnchor.constraint(equalTo: superViewBottomAnchor, constant: padding.bottom).isActive = true
         }
@@ -137,10 +137,10 @@ extension UIView {
         if let superviewCenterYAnchor = superview?.centerYAnchor {
             centerYAnchor.constraint(equalTo: superviewCenterYAnchor).isActive = true
         }
-
-//        if let superViewBottomAnchor = superview?.safeAreaLayoutGuide.bottomAnchor {
-//            bottomAnchor.constraint(equalTo: superViewBottomAnchor, constant: padding.bottom).isActive = true
-//        }
+        
+        //        if let superViewBottomAnchor = superview?.safeAreaLayoutGuide.bottomAnchor {
+        //            bottomAnchor.constraint(equalTo: superViewBottomAnchor, constant: padding.bottom).isActive = true
+        //        }
         
         if let leading = leading {
             anchoredConstraints.leading = leadingAnchor.constraint(equalTo: leading, constant: padding.left)
@@ -158,4 +158,36 @@ extension UIView {
         }
     }
     
+}
+
+
+extension UIImageView {
+    func loadImageWithUrl(url: String, completion: @escaping () -> Void) {
+        let url = URL(string: url)
+        
+        image = nil
+        let session = URLSession.shared
+        guard let url = url else {
+            return
+        }
+        
+        session.dataTask(with: url) { data, response, error in
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            print((response as? HTTPURLResponse)?.statusCode)
+            print(data)
+            DispatchQueue.main.async {
+                self.image = UIImage(data: data)
+                completion()
+            }
+            
+        }
+        
+    }
 }

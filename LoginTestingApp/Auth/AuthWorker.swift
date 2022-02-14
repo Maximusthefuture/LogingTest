@@ -19,24 +19,24 @@ class AuthWorker: AuthWorkerLogic {
     private let authUrl = URL(string: "http://dev-exam.l-tech.ru/api/v1/auth")
     
     func singInUser(phone: String, password: String, completion: @escaping (LoginValidation?) -> Void) {
-        print("phone: \(phone) password: \(password)")
-        //        if success: presenter.showExamList?
-        //        else presenter.showAlert?
-        
         guard let authUrl = authUrl else { return }
         let params = ["phone": phone, "password": password]
-        networkWorker.postData(url: authUrl, params: params, completion: { data, error in
-            guard let data = data else {
-//                completion(nil)
-                return
-            }
-            print(error?.localizedDescription)
-            
-            let decoder = JSONDecoder()
-            let success = try? decoder.decode(LoginValidation.self, from: data)
-            completion(success)
-            
-        })
+//        networkWorker.postData(url: authUrl, params: params, completion: { data, error in
+//            guard let data = data else {
+//                return
+//            }
+//            let decoder = JSONDecoder()
+//            let success = try? decoder.decode(LoginValidation.self, from: data)
+//           completion(success)
+//        })
+        var isBool = false
+        if phone == "111" {
+            isBool = true
+        } else {
+            isBool = false
+        }
+        let mock = LoginValidation(success: isBool)
+        completion(mock)
     }
     
     private let networkWorker: NetworkWorkingLogic = NetworkWorker()
@@ -54,10 +54,9 @@ class AuthWorker: AuthWorkerLogic {
                 completion(nil)
                 return
             }
-            
             let decoder = JSONDecoder()
             let phoneMask = try? decoder.decode(PhoneMask.self, from: data)
-            print(phoneMask?.phoneMask)
+            
             completion(phoneMask)
         }
     }

@@ -9,14 +9,12 @@ import Foundation
 
 protocol NetworkWorkingLogic {
     func sendRequest(to: URL, params: [String: String], completion: @escaping (Data?, Error?) -> Void)
-//    func getData?
     func postData(url: URL, params: [String: String],  completion: @escaping (Data?, Error?) -> Void)
 }
 
 class NetworkWorker: NetworkWorkingLogic {
     private let session = URLSession.shared
-    
-    
+
     func postData(url: URL, params: [String: String],  completion: @escaping (Data?, Error?) -> Void) {
 
         var request = URLRequest(url: url)
@@ -26,8 +24,8 @@ class NetworkWorker: NetworkWorkingLogic {
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completion(nil, error)
-                
             }
+            
             print("response", (response as! HTTPURLResponse).statusCode)
             completion(data, nil)
         }.resume()
@@ -57,6 +55,7 @@ class NetworkWorker: NetworkWorkingLogic {
                 print(error)
               return
             }
+            print((responce as? HTTPURLResponse)?.statusCode)
 
             completion(data, nil)
         }

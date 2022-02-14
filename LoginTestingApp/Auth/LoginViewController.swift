@@ -11,20 +11,22 @@ import UIKit
 protocol AuthDisplayLogic: AnyObject {
     func displayPhoneMask(phoneMask: String)
     func showAlert()
+    func moveToNextScreen()
   
 }
 
 class LoginViewController: UIViewController {
     
-    //TEST
-    var test = AuthWorker()
+
+    var router: AuthRoutingLogic?
     var interactor: AuthBusinessLogic?
     lazy var stackView = UIStackView(arrangedSubviews: [companyLogo, phoneNumberTextField, passwordTextField, singInButton])
     
     let companyLogo: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named: "image_logo")?.withRenderingMode(.alwaysOriginal)
-        
+        let image = UIImage(named: "image_logo")
+        imageView.contentMode = .center
+        imageView.clipsToBounds = true
         imageView.image = image
         return imageView
     }()
@@ -67,7 +69,7 @@ class LoginViewController: UIViewController {
         bottomLine.frame = CGRect(x: 0, y: phoneNumberTextField.frame.height - 1, width: phoneNumberTextField.frame.width, height: 2)
         bottomLine.backgroundColor = UIColor.gray.cgColor
         viewsInit()
-        setupNotificationObserver()
+//        setupNotificationObserver()
         setupTapGesture()
         setup()
 //        requestToFetchMask()
@@ -85,26 +87,26 @@ class LoginViewController: UIViewController {
         passwordTextField.borderStyle = .none
 //        passwordTextField.layer.addSublayer(bottomLine)
         //        stackView.alignment = .center
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         navigationController?.navigationBar.isHidden = true
         stackView.spacing = 10
-        //        companyLogo.translatesAutoresizingMaskIntoConstraints = false
-        phoneNumberTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        passwordTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        singInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        phoneNumberTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        passwordTextField.heightAnchor.constraint(equalToConstant: 60).isActive = true
         stackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 16))
+        singInButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
     
     private func setup() {
         let interactor = AuthInteractor()
         let presenter = AuthPresenter()
-//        let router = AuthRouter()
+        let router = AuthRouter()
         interactor.presenter = presenter
         presenter.viewController = self
         self.interactor = interactor
-//        router.viewController = self
+        router.viewController = self
 //        router.dataStore = interactor
+        self.router = router
 
     }
     private func login() {
@@ -136,7 +138,7 @@ class LoginViewController: UIViewController {
         let keyBoardFrame = value.cgRectValue
         let bottomSpace = view.frame.height - stackView.frame.origin.y - stackView.frame.height
         let difference =  keyBoardFrame.height - bottomSpace
-        self.view.transform = CGAffineTransform(translationX: 0, y: -difference - 8)
+        self.view.transform = CGAffineTransform(translationX: 0, y: -difference)
         
     }
     
@@ -154,9 +156,13 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: AuthDisplayLogic {
+    func moveToNextScreen() {
+        router?.routeToExamList()
+    }
+    
     func showAlert() {
         DispatchQueue.main.async {
-            var alert = UIAlertController(title: "Wrong username or password", message: "Try again", preferredStyle: .alert)
+            var alert = UIAlertController(title: "Error", message: "Wrong username or password, please try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: {_ in
                 self.phoneNumberTextField.text = nil
                 self.passwordTextField.text = nil

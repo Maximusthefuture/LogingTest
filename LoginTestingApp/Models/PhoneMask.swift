@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct PhoneMask: Decodable {
+struct PhoneMask: Codable {
     let phoneMask: String
 }

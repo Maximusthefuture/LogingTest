@@ -23,8 +23,7 @@ class AuthPresenter: AuthPresentationLogic {
     
     func presentSignInData(isSuccess: Bool) {
         if isSuccess {
-//            router.moveToNext()
-            print("SUCCESSS")
+            viewController?.moveToNextScreen()
         } else {
             viewController?.showAlert()
         }
