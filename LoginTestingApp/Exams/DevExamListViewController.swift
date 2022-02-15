@@ -10,10 +10,6 @@ import UIKit
 import SDWebImage
 
 
-enum DevUrls: String {
-    case base = "http://dev-exam.l-tech.ru"
-    case posts = ""
-}
 
 protocol ExamDisplayLogic: AnyObject {
     func displayFetchedExams(_ viewModel: ExamModels.FetchExams.ViewModel)
@@ -164,7 +160,7 @@ extension DevExamListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String.init(describing: ExamsTableViewCell.self), for: indexPath) as! ExamsTableViewCell
         cell.configure(post: examsArray[indexPath.row])
-        cell.picture.sd_setImage(with: URL(string: "\(DevUrls.base.rawValue)\(examsArray[indexPath.row].image)"))
+        cell.picture.sd_setImage(with: URL(string: "\(Query.base.rawValue)\(examsArray[indexPath.row].image)"))
         return cell
     }
 }

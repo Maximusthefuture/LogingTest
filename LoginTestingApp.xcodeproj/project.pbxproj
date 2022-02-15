@@ -17,6 +17,8 @@
 		386A288427BB9CD90095E8DF /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A288327BB9CD90095E8DF /* Padding.swift */; };
 		38B5428127BA4AB100DAD599 /* ExamsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5428027BA4AB100DAD599 /* ExamsTableViewCell.swift */; };
 		38B5428327BA4C4600DAD599 /* Exams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5428227BA4C4600DAD599 /* Exams.swift */; };
+		38D5FA6527BBEB49007E50D0 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5FA6427BBEB49007E50D0 /* Query.swift */; };
+		38D5FA6727BBEC5B007E50D0 /* AuthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5FA6627BBEC5B007E50D0 /* AuthModels.swift */; };
 		38D6187427B8F93700E00CB5 /* LoginValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6187327B8F93700E00CB5 /* LoginValidation.swift */; };
 		38D6187627B92D7400E00CB5 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6187527B92D7400E00CB5 /* AuthRouter.swift */; };
 		38D6187927B94B4400E00CB5 /* ExamInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6187827B94B4400E00CB5 /* ExamInteractor.swift */; };
@@ -62,6 +64,8 @@
 		386A288327BB9CD90095E8DF /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
 		38B5428027BA4AB100DAD599 /* ExamsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamsTableViewCell.swift; sourceTree = "<group>"; };
 		38B5428227BA4C4600DAD599 /* Exams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exams.swift; sourceTree = "<group>"; };
+		38D5FA6427BBEB49007E50D0 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		38D5FA6627BBEC5B007E50D0 /* AuthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModels.swift; sourceTree = "<group>"; };
 		38D6187327B8F93700E00CB5 /* LoginValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidation.swift; sourceTree = "<group>"; };
 		38D6187527B92D7400E00CB5 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		38D6187827B94B4400E00CB5 /* ExamInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamInteractor.swift; sourceTree = "<group>"; };
@@ -129,8 +133,30 @@
 			isa = PBXGroup;
 			children = (
 				386A288327BB9CD90095E8DF /* Padding.swift */,
+				38D5FA6427BBEB49007E50D0 /* Query.swift */,
+				38DA423527B6982500FD9D33 /* Extensions+UIView.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		38D5FA6827BBF138007E50D0 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				38F7C8EB27B7E47000D628DD /* NetworkWorkingLogic.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		38D5FA6927BBF13F007E50D0 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				38DA422A27B689B600FD9D33 /* Assets.xcassets */,
+				38DA422C27B689B600FD9D33 /* LaunchScreen.storyboard */,
+				38DA422127B689B400FD9D33 /* AppDelegate.swift */,
+				38DA422327B689B400FD9D33 /* SceneDelegate.swift */,
+				38DA422727B689B400FD9D33 /* Main.storyboard */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		38D6187727B94B2B00E00CB5 /* Exams */ = {
@@ -180,19 +206,14 @@
 		38DA422027B689B400FD9D33 /* LoginTestingApp */ = {
 			isa = PBXGroup;
 			children = (
+				38D5FA6927BBF13F007E50D0 /* Support */,
+				38D5FA6827BBF138007E50D0 /* Worker */,
 				386A288227BB9CCD0095E8DF /* Helpers */,
 				386A287727BB88C00095E8DF /* ExamDetail */,
 				38D6187E27B94B7500E00CB5 /* Models */,
 				38D6187727B94B2B00E00CB5 /* Exams */,
-				38F7C8EB27B7E47000D628DD /* NetworkWorkingLogic.swift */,
 				38F7C8F127B7EA6F00D628DD /* Auth */,
-				38DA422127B689B400FD9D33 /* AppDelegate.swift */,
-				38DA422327B689B400FD9D33 /* SceneDelegate.swift */,
-				38DA422727B689B400FD9D33 /* Main.storyboard */,
-				38DA422A27B689B600FD9D33 /* Assets.xcassets */,
-				38DA422C27B689B600FD9D33 /* LaunchScreen.storyboard */,
 				38DA422F27B689B600FD9D33 /* Info.plist */,
-				38DA423527B6982500FD9D33 /* Extensions+UIView.swift */,
 			);
 			path = LoginTestingApp;
 			sourceTree = "<group>";
@@ -205,6 +226,7 @@
 				38F7C8F427B7FE5300D628DD /* AuthPresenter.swift */,
 				38DA422527B689B400FD9D33 /* LoginViewController.swift */,
 				38D6187527B92D7400E00CB5 /* AuthRouter.swift */,
+				38D5FA6627BBEC5B007E50D0 /* AuthModels.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -434,6 +456,7 @@
 				386A287B27BB8A720095E8DF /* ExamDetailInteractor.swift in Sources */,
 				38DA422227B689B400FD9D33 /* AppDelegate.swift in Sources */,
 				38D6187B27B94B5200E00CB5 /* ExamWorker.swift in Sources */,
+				38D5FA6727BBEC5B007E50D0 /* AuthModels.swift in Sources */,
 				38DA423627B6982500FD9D33 /* Extensions+UIView.swift in Sources */,
 				38B5428327BA4C4600DAD599 /* Exams.swift in Sources */,
 				386A288127BB93830095E8DF /* ExamDetailModels.swift in Sources */,
@@ -444,6 +467,7 @@
 				38B5428127BA4AB100DAD599 /* ExamsTableViewCell.swift in Sources */,
 				38F7C8EE27B7E6D400D628DD /* AuthWorker.swift in Sources */,
 				386A287927BB88E00095E8DF /* ExamDetailViewController.swift in Sources */,
+				38D5FA6527BBEB49007E50D0 /* Query.swift in Sources */,
 				38D6187927B94B4400E00CB5 /* ExamInteractor.swift in Sources */,
 				38D6187427B8F93700E00CB5 /* LoginValidation.swift in Sources */,
 				38DA423827B6A08C00FD9D33 /* DevExamListViewController.swift in Sources */,

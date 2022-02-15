@@ -18,13 +18,10 @@ class ExamDetailViewController: UIViewController {
     var router: ExamDetailDataPassing?
     var exam: Exam?
     
-    
-    
     let examImage: UIImageView = {
         var image = UIImageView(frame: .init(origin: .zero, size: .init(width: 200, height: 200)))
         image.layer.cornerRadius = 10
         image.clipsToBounds = true
-        
         return image
     }()
     
@@ -86,9 +83,6 @@ class ExamDetailViewController: UIViewController {
         self.interactor = interactor
         self.router = router
     }
-    
-    
-    
 }
 
 extension ExamDetailViewController: ExamDetailDisplayLogic {
@@ -96,7 +90,7 @@ extension ExamDetailViewController: ExamDetailDisplayLogic {
         exam = viewModel.exam
         examTitle.text = viewModel.exam.title
         examDesctiption.text = viewModel.exam.text
-        examImage.sd_setImage(with: URL(string: "\(DevUrls.base.rawValue)\(viewModel.exam.image)"))
+        examImage.sd_setImage(with: URL(string: "\(Query.base.rawValue)\(viewModel.exam.image)"))
     }
     
 }

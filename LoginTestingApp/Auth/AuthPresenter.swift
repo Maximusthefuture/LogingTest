@@ -9,7 +9,7 @@ import Foundation
 
 
 protocol AuthPresentationLogic {
-    func presentPhoneMask(mask: String)
+    func presentPhoneMask(_ response: AuthModels.Fetch.Response)
     func presentSignInData(isSuccess: Bool)
 }
 
@@ -17,8 +17,9 @@ class AuthPresenter: AuthPresentationLogic {
     
     weak var viewController: AuthDisplayLogic?
     
-    func presentPhoneMask(mask: String) {
-        viewController?.displayPhoneMask(phoneMask: mask)
+    func presentPhoneMask(_ response: AuthModels.Fetch.Response) {
+        let viewModel = AuthModels.Fetch.ViewModel(phoneMask: response.phoneMask)
+        viewController?.displayPhoneMask(viewModel)
     }
     
     func presentSignInData(isSuccess: Bool) {

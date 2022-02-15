@@ -9,19 +9,19 @@ import Foundation
 
 
 protocol AuthBusinessLogic {
-    func getPhoneMask(request: String)
-//    func loginUser(request: String)
+    func getPhoneMask(_ request: AuthModels.Fetch.Request)
+    //    func loginUser(request: String)
     func singInUser(phoneNumber: String, password: String)
 }
 
 protocol AuthDataStore {
     var phoneMask: PhoneMask? { get }
     var phoneNumber: String? { get set }
-    var password: String? { get set } //????
+    var password: String? { get set }
 }
 
 class AuthInteractor: AuthBusinessLogic, AuthDataStore {
-   
+    
     var phoneMask: PhoneMask?
     var phoneNumber: String?
     var password: String?
@@ -29,10 +29,10 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
     var presenter: AuthPresentationLogic?
     lazy var worker: AuthWorkerLogic = AuthWorker()
     
-    
-    func getPhoneMask(request: String) {
+    func getPhoneMask(_  request: AuthModels.Fetch.Request) {
         worker.getPhoneMask { phoneMask in
-            self.presenter?.presentPhoneMask(mask: phoneMask?.phoneMask ?? "")
+            let response = AuthModels.Fetch.Response(phoneMask: phoneMask?.phoneMask ?? "+7 (XXX) XXX XXX")
+            self.presenter?.presentPhoneMask(response)
         }
     }
     
@@ -42,17 +42,13 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
                 self.presenter?.presentSignInData(isSuccess: success.success)
             }
         }
-        
     }
-    
-    
-    
-    }
-    
+}
 
-    
-    
-    
-    
-    
+
+
+
+
+
+
 

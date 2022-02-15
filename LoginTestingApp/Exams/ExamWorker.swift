@@ -23,7 +23,7 @@ class ExamWorker: ExamWorkerLogic {
     
     var session = URLSession.shared
     private let networkWorker: NetworkWorkingLogic = NetworkWorker()
-    private let examsUrl = URL(string: "http://dev-exam.l-tech.ru/api/v1/posts")
+    private let examsUrl = URL(string: Query.posts.rawValue)
     
     func fetchNewExams(_ comletion: @escaping(Exams?) -> Void) {
         comletion(newArray)

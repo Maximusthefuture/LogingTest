@@ -25,16 +25,7 @@ final class ExamDetailInteractor: ExamDetailBusinessLogic, ExamDetailDataStore {
         guard let exam = exam else {
             return
         }
-        
         let response = ExamDetailModels.Fetch.Response(exam: exam)
-        
         self.presenter?.presentExamDetail(response)
-
     }
-    
-   
-    
-    
-    
-    
 }

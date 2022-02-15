@@ -9,7 +9,7 @@ import UIKit
 
 
 protocol AuthDisplayLogic: AnyObject {
-    func displayPhoneMask(phoneMask: String)
+    func displayPhoneMask(_ viewModel: AuthModels.Fetch.ViewModel)
     func showAlert()
     func moveToNextScreen()
   
@@ -61,7 +61,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         view.backgroundColor = .white
         view.addSubview(stackView)
         stackView.axis = .vertical
@@ -69,24 +68,22 @@ class LoginViewController: UIViewController {
         bottomLine.frame = CGRect(x: 0, y: phoneNumberTextField.frame.height - 1, width: phoneNumberTextField.frame.width, height: 2)
         bottomLine.backgroundColor = UIColor.gray.cgColor
         viewsInit()
-//        setupNotificationObserver()
+        setupNotificationObserver()
         setupTapGesture()
         setup()
-//        requestToFetchMask()
+        requestToFetchMask()
         
     }
     
     private func requestToFetchMask() {
-        interactor?.getPhoneMask(request: "Request")
+        let request = AuthModels.Fetch.Request()
+        interactor?.getPhoneMask(request)
     }
     
     
     fileprivate func viewsInit() {
         phoneNumberTextField.borderStyle = .none
-//        phoneNumberTextField.layer.addSublayer(bottomLine)
         passwordTextField.borderStyle = .none
-//        passwordTextField.layer.addSublayer(bottomLine)
-        //        stackView.alignment = .center
         stackView.distribution = .fill
         navigationController?.navigationBar.isHidden = true
         stackView.spacing = 10
@@ -120,10 +117,6 @@ class LoginViewController: UIViewController {
     }
     
     @objc fileprivate func handleSingIn() {
-//        let vc = DevExamListViewController()
-//        let navController = UINavigationController(rootViewController: vc)
-//        navController.modalPresentationStyle = .fullScreen
-//        present(navController, animated: true)
         login()
     }
     
@@ -148,9 +141,6 @@ class LoginViewController: UIViewController {
     
     @objc func handleTapGesure(tapGesure: UITapGestureRecognizer) {
         self.view.endEditing(true)
-        
-
-       
     }
 
 }
@@ -162,7 +152,7 @@ extension LoginViewController: AuthDisplayLogic {
     
     func showAlert() {
         DispatchQueue.main.async {
-            var alert = UIAlertController(title: "Error", message: "Wrong username or password, please try again", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "Wrong username or password, please try again", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: {_ in
                 self.phoneNumberTextField.text = nil
                 self.passwordTextField.text = nil
@@ -174,9 +164,9 @@ extension LoginViewController: AuthDisplayLogic {
         
     }
     
-    func displayPhoneMask(phoneMask: String) {
+    func displayPhoneMask(_ viewModel: AuthModels.Fetch.ViewModel) {
         DispatchQueue.main.async {
-            self.phoneNumberTextField.text = phoneMask
+            self.phoneNumberTextField.text = viewModel.phoneMask
         }
     }
 }
