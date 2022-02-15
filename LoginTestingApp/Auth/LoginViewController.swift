@@ -16,11 +16,11 @@ protocol AuthDisplayLogic: AnyObject {
 }
 
 class LoginViewController: UIViewController {
-    
 
     var router: AuthRoutingLogic?
     var interactor: AuthBusinessLogic?
     lazy var stackView = UIStackView(arrangedSubviews: [companyLogo, phoneNumberTextField, passwordTextField, singInButton])
+    var phoneMask: String?
     
     let companyLogo: UIImageView = {
         let imageView = UIImageView()
@@ -34,17 +34,16 @@ class LoginViewController: UIViewController {
     let phoneNumberTextField: UITextField = {
         let tf = UITextField()
         tf.keyboardType = .phonePad
-//        tf.backgroundColor = .red
+        tf.addTarget(self, action: #selector(handlePhoneNumberChange), for: .editingChanged)
         tf.placeholder = "Phone Number"
         return tf
     }()
     
     let passwordTextField: UITextField = {
         let tf = UITextField()
-//        tf.backgroundColor = .red
         tf.placeholder = "Password"
-//        tf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         tf.isSecureTextEntry = true
+        tf.textContentType = .password
         return tf
     }()
     
@@ -57,7 +56,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-
+    var phone: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +70,15 @@ class LoginViewController: UIViewController {
         setupNotificationObserver()
         setupTapGesture()
         setup()
-        requestToFetchMask()
+        self.passwordTextField.text = self.readPassword(service: "79005868675", account: "com.login")
+//        requestToFetchMask()
         
+    }
+   
+    @objc private func handlePhoneNumberChange(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+//        let mask = phoneMask?.replacingOccurrences(of: "[^0-9]", with: "X", options: .regularExpression)
+        textField.text = text.applyPatternOnNumbers(pattern: "+X (XXX) XXX XXXX", replacementCharacter: "X")
     }
     
     private func requestToFetchMask() {
@@ -81,6 +87,56 @@ class LoginViewController: UIViewController {
     }
     
     
+    func readPassword(service: String, account: String) -> String {
+       let query: [String: AnyObject] = [
+           // kSecAttrService,  kSecAttrAccount, and kSecClass
+           // uniquely identify the item to read in Keychain
+           kSecAttrService as String: service as AnyObject,
+           kSecAttrAccount as String: account as AnyObject,
+           kSecClass as String: kSecClassGenericPassword,
+           
+           // kSecMatchLimitOne indicates keychain should read
+           // only the most recent item matching this query
+           kSecMatchLimit as String: kSecMatchLimitOne,
+
+           // kSecReturnData is set to kCFBooleanTrue in order
+           // to retrieve the data for the item
+           kSecReturnData as String: kCFBooleanTrue
+       ]
+
+       // SecItemCopyMatching will attempt to copy the item
+       // identified by query to the reference itemCopy
+       var itemCopy: AnyObject?
+       let status = SecItemCopyMatching(
+           query as CFDictionary,
+           &itemCopy
+       )
+
+       // errSecItemNotFound is a special status indicating the
+       // read item does not exist. Throw itemNotFound so the
+       // client can determine whether or not to handle
+       // this case
+   //    guard status != errSecItemNotFound else {
+   //        throw KeychainError.itemNotFound
+   //    }
+       
+       // Any status other than errSecSuccess indicates the
+       // read operation failed.
+   //    guard status == errSecSuccess else {
+   //        throw KeychainError.unexpectedStatus(status)
+   //    }
+
+       // This implementation of KeychainInterface requires all
+       // items to be saved and read as Data. Otherwise,
+       // invalidItemFormat is thrown
+       guard let password = itemCopy as? String else {
+           return ""
+       }
+
+       return password
+   }
+    
+   
     fileprivate func viewsInit() {
         phoneNumberTextField.borderStyle = .none
         passwordTextField.borderStyle = .none
@@ -108,7 +164,8 @@ class LoginViewController: UIViewController {
     }
     private func login() {
 //        let request = Login.Login.Request(username: "Captain Jack Sparrow", password: "123456")
-        interactor?.singInUser(phoneNumber: phoneNumberTextField.text ?? "", password: passwordTextField.text ?? "")
+        let phoneNumber = phoneNumberTextField.text?.replacingOccurrences(of: "[+() ]", with: "", options: .regularExpression)
+        interactor?.singInUser(phoneNumber: phoneNumber ?? "", password: passwordTextField.text ?? "")
        }
     
     fileprivate func setupNotificationObserver() {
@@ -142,7 +199,6 @@ class LoginViewController: UIViewController {
     @objc func handleTapGesure(tapGesure: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
-
 }
 
 extension LoginViewController: AuthDisplayLogic {
@@ -160,14 +216,30 @@ extension LoginViewController: AuthDisplayLogic {
             self.present(alert, animated: true)
           
         }
-       
-        
     }
     
     func displayPhoneMask(_ viewModel: AuthModels.Fetch.ViewModel) {
         DispatchQueue.main.async {
             self.phoneNumberTextField.text = viewModel.phoneMask
+            
+            self.phoneMask = viewModel.phoneMask
         }
     }
 }
+
+extension String {
+    func applyPatternOnNumbers(pattern: String, replacementCharacter: Character) -> String {
+        var pureNumber = self.replacingOccurrences( of: "[^0-9]", with: "", options: .regularExpression)
+        for index in 0 ..< pattern.count {
+            guard index < pureNumber.count else { return pureNumber }
+            let stringIndex = String.Index(utf16Offset: index, in: pattern)
+            let patternCharacter = pattern[stringIndex]
+            guard patternCharacter != replacementCharacter else { continue }
+            pureNumber.insert(patternCharacter, at: stringIndex)
+        }
+        return pureNumber
+    }
+}
+
+
 

@@ -20,7 +20,7 @@ struct ExamModels {
             let exams: [Exam]
         }
     }
-    enum SelectUser {
+    enum SelectExam {
         struct Request {
             let index: Int
         }

@@ -9,7 +9,7 @@ import Foundation
 
 protocol ExamBusinessLogic {
     func fetchExams(_ request: ExamModels.FetchExams.Request, sortBy: SortBy)
-    func selectExam(_ request: ExamModels.SelectUser.Request)
+    func selectExam(_ request: ExamModels.SelectExam.Request)
     func fetchChangedExam(_ request: ExamModels.FetchExams.Request)
 }
 
@@ -55,7 +55,7 @@ class ExamInteractor: ExamBusinessLogic, ExamDataStore {
         }
     }
  
-    func selectExam(_ request: ExamModels.SelectUser.Request) {
+    func selectExam(_ request: ExamModels.SelectExam.Request) {
         guard !exams.isEmpty, request.index < exams.count else { return }
         selectedExam = exams[request.index]
     }

@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 import SDWebImage
-
-
+import Security
 
 protocol ExamDisplayLogic: AnyObject {
     func displayFetchedExams(_ viewModel: ExamModels.FetchExams.ViewModel)
@@ -41,8 +40,9 @@ class DevExamListViewController: UIViewController {
         configureSortSegmentControl()
         tableViewInit()
         setup()
-        requestToFetchExams()
+//        requestToFetchExams()
         startTimer()
+        saveToKeyChain(password: "devExam18", account: "79005868675", service: "com.login")
     }
     
     
@@ -85,7 +85,29 @@ class DevExamListViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 500
         
+        
     }
+    
+    func saveToKeyChain(password: String, account: String, service: String)  {
+       let query: [String: AnyObject] = [
+           // kSecAttrService,  kSecAttrAccount, and kSecClass
+           // uniquely identify the item to save in Keychain
+        kSecAttrService as String: service as AnyObject,
+           kSecAttrAccount as String: account as AnyObject,
+           kSecClass as String: kSecClassGenericPassword,
+           
+           // kSecValueData is the item value to save
+           kSecValueData as String: password as AnyObject
+       ]
+       
+       // SecItemAdd attempts to add the item identified by
+       // the query to keychain
+       SecItemAdd(
+           query as CFDictionary,
+           nil
+       )
+   }
+    
     
     private func configureSortSegmentControl() {
         sortSegmentsControl.selectedSegmentIndex = 0
@@ -132,7 +154,7 @@ class DevExamListViewController: UIViewController {
     }
     
     private func requestToSelectExam(by indexPath: IndexPath) {
-        let request = ExamModels.SelectUser.Request(index: indexPath.row)
+        let request = ExamModels.SelectExam.Request(index: indexPath.row)
         interactor?.selectExam(request)
     }
 }
