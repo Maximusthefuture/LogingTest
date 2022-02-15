@@ -47,8 +47,9 @@ class ExamsTableViewCell: UITableViewCell {
     }()
     
     func configure(post: Exam) {
+        let formattedDate = post.date.split(separator: "T")
         title.text = post.title
-        date.text = post.date
+        date.text = String("\(formattedDate[0]), \(formattedDate[1].replacingOccurrences(of: "Z", with: ""))")
         detailedText.text = post.text
     }
 

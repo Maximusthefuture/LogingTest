@@ -24,25 +24,18 @@ class ExamRounter: ExamRoutingLogic, ExamDataPassing {
     func routeToExamDetail() {
         let vc = ExamDetailViewController()
         guard var examDetailDataStore = vc.router?.dataStore else { return }
-      
         passDataToExamDetail(destination: &examDetailDataStore)
         navigateToExamDetail(destination: vc)
-        
     }
     
     private func navigateToExamDetail(destination: ExamDetailViewController) {
-       
         let navController = UINavigationController(rootViewController: destination)
         navController.modalPresentationStyle = .fullScreen
         viewController?.navigationController?.pushViewController(destination, animated: true)
-       
-        
     }
     
     private func passDataToExamDetail(destination: inout ExamDetailDataStore) {
         destination.exam = dataStore?.selectedExam
     }
-    
-    
 }
 

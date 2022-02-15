@@ -23,3 +23,7 @@ struct Exam: Codable {
 }
 
 typealias Exams = [Exam]
+
+extension Exam: Equatable {
+    
+}
