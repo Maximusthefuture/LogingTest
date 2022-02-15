@@ -16,7 +16,7 @@ enum DevUrls: String {
 }
 
 protocol ExamDisplayLogic: AnyObject {
-    func displayFetchedExams(_ fetchedPosts: [Post])
+    func displayFetchedExams(_ fetchedPosts: [Exam])
 }
 
 class DevExamListViewController: UIViewController {
@@ -25,9 +25,10 @@ class DevExamListViewController: UIViewController {
     let padding: CGFloat = 16
     let tableView = UITableView()
     var interactor: ExamBusinessLogic?
+    var router: (ExamRoutingLogic & ExamDataPassing)?
     let sortSegmentsControl: UISegmentedControl = .init(items: ["Sort", "Not sort"])
     
-    var dummyArray = [Post]()
+    var dummyArray = [Exam]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,18 +45,20 @@ class DevExamListViewController: UIViewController {
         tableViewInit()
         setup()
         requestToFetchExams()
-        
-        
-        
     }
     
     private func setup() {
         let interactor = ExamInteractor()
         let presenter = ExamPresenter()
         let router = ExamRounter()
-        presenter.viewController = self
+       
         interactor.presenter = presenter
+        presenter.viewController = self
+        router.viewController = self
+        router.dataStore = interactor
+        
         self.interactor = interactor
+        self.router = router
     }
     
     private func requestToFetchExams() {
@@ -115,6 +118,11 @@ class DevExamListViewController: UIViewController {
         requestToFetchExams()
         self.tableView.reloadData()
     }
+    
+    private func requestToSelectExam(by indexPath: IndexPath) {
+        let request = ExamModels.SelectUser.Request(index: indexPath.row)
+        interactor?.selectExam(request)
+    }
 }
 
 extension DevExamListViewController: UITableViewDelegate {
@@ -129,6 +137,13 @@ extension DevExamListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("tapped", indexPath.row)
+        requestToSelectExam(by: indexPath)
+        router?.routeToExamDetail()
+    }
 }
 
 extension DevExamListViewController: UITableViewDataSource {
@@ -142,7 +157,7 @@ extension DevExamListViewController: UITableViewDataSource {
 
 extension DevExamListViewController: ExamDisplayLogic {
     
-    func displayFetchedExams(_ fetchedPosts: [Post]) {
+    func displayFetchedExams(_ fetchedPosts: [Exam]) {
         self.dummyArray = fetchedPosts
         DispatchQueue.main.async {
             self.tableView.reloadData()

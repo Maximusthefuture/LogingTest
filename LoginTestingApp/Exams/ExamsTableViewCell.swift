@@ -17,6 +17,8 @@ class ExamsTableViewCell: UITableViewCell {
             frame: .init(
                 origin: .zero, size:
                         .init(width: 50, height: 50)))
+        image.layer.cornerRadius = 10
+        image.clipsToBounds = true
         return image
     }()
     
@@ -44,14 +46,14 @@ class ExamsTableViewCell: UITableViewCell {
         return  view
     }()
     
-    func configure(post: Post) {
+    func configure(post: Exam) {
         title.text = post.title
         date.text = post.date
         detailedText.text = post.text
     }
 
-    let padding: CGFloat = 8
     
+    let padding = Padding.eight
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         let marginGuide = contentView.layoutMarginsGuide
@@ -61,10 +63,11 @@ class ExamsTableViewCell: UITableViewCell {
         roundedView.addSubview(date)
         roundedView.addSubview(picture)
         selectionStyle = .none
-        roundedView.backgroundColor = .red
-        roundedView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: padding, left: padding, bottom: padding, right: padding))
-        picture.anchor(top: nil, leading: marginGuide.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: padding, left: padding, bottom: padding, right: 0),size: .init(width: 100, height: 100))
-        picture.centerYAnchor.constraint(equalTo: roundedView.centerYAnchor, constant: padding).isActive = true
+        roundedView.backgroundColor = .init(white: 0.1, alpha: 0.2)
+        roundedView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: padding, left: 0, bottom:padding, right: padding))
+        picture.anchor(top: nil, leading: marginGuide.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: padding, left: 0, bottom: padding, right: 0),size: .init(width: 100, height: 100))
+    
+        picture.centerYAnchor.constraint(equalTo: roundedView.centerYAnchor, constant: 0).isActive = true
         title.anchor(top: marginGuide.topAnchor, leading: picture.trailingAnchor, bottom: nil , trailing: marginGuide.trailingAnchor, padding: .init(top: padding, left: padding, bottom: 0, right: 0))
         detailedText.anchor(top: title.bottomAnchor, leading: picture.trailingAnchor, bottom: nil , trailing: marginGuide.trailingAnchor, padding: .init(top: padding, left: padding, bottom: 0, right: padding))
         date.anchor(top: detailedText.bottomAnchor, leading: picture.trailingAnchor, bottom: marginGuide.bottomAnchor , trailing: marginGuide.trailingAnchor, padding: .init(top: padding, left: padding, bottom: padding, right: padding))

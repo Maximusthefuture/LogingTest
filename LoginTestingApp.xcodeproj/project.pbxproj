@@ -8,8 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		32839E3D0345945AD29FE285 /* Pods_LoginTestingApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AA1B42169AD4971B0F6297F /* Pods_LoginTestingApp.framework */; };
+		386A287627BB85D90095E8DF /* ExamModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A287527BB85D90095E8DF /* ExamModels.swift */; };
+		386A287927BB88E00095E8DF /* ExamDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A287827BB88E00095E8DF /* ExamDetailViewController.swift */; };
+		386A287B27BB8A720095E8DF /* ExamDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A287A27BB8A720095E8DF /* ExamDetailInteractor.swift */; };
+		386A287D27BB8C2C0095E8DF /* ExamDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A287C27BB8C2C0095E8DF /* ExamDetailRouter.swift */; };
+		386A287F27BB90A50095E8DF /* ExamDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A287E27BB90A50095E8DF /* ExamDetailPresenter.swift */; };
+		386A288127BB93830095E8DF /* ExamDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A288027BB93830095E8DF /* ExamDetailModels.swift */; };
+		386A288427BB9CD90095E8DF /* Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386A288327BB9CD90095E8DF /* Padding.swift */; };
 		38B5428127BA4AB100DAD599 /* ExamsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5428027BA4AB100DAD599 /* ExamsTableViewCell.swift */; };
-		38B5428327BA4C4600DAD599 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5428227BA4C4600DAD599 /* Posts.swift */; };
+		38B5428327BA4C4600DAD599 /* Exams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5428227BA4C4600DAD599 /* Exams.swift */; };
 		38D6187427B8F93700E00CB5 /* LoginValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6187327B8F93700E00CB5 /* LoginValidation.swift */; };
 		38D6187627B92D7400E00CB5 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6187527B92D7400E00CB5 /* AuthRouter.swift */; };
 		38D6187927B94B4400E00CB5 /* ExamInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D6187827B94B4400E00CB5 /* ExamInteractor.swift */; };
@@ -46,8 +53,15 @@
 
 /* Begin PBXFileReference section */
 		2AA1B42169AD4971B0F6297F /* Pods_LoginTestingApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoginTestingApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		386A287527BB85D90095E8DF /* ExamModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamModels.swift; sourceTree = "<group>"; };
+		386A287827BB88E00095E8DF /* ExamDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamDetailViewController.swift; sourceTree = "<group>"; };
+		386A287A27BB8A720095E8DF /* ExamDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamDetailInteractor.swift; sourceTree = "<group>"; };
+		386A287C27BB8C2C0095E8DF /* ExamDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamDetailRouter.swift; sourceTree = "<group>"; };
+		386A287E27BB90A50095E8DF /* ExamDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamDetailPresenter.swift; sourceTree = "<group>"; };
+		386A288027BB93830095E8DF /* ExamDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamDetailModels.swift; sourceTree = "<group>"; };
+		386A288327BB9CD90095E8DF /* Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Padding.swift; sourceTree = "<group>"; };
 		38B5428027BA4AB100DAD599 /* ExamsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamsTableViewCell.swift; sourceTree = "<group>"; };
-		38B5428227BA4C4600DAD599 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
+		38B5428227BA4C4600DAD599 /* Exams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exams.swift; sourceTree = "<group>"; };
 		38D6187327B8F93700E00CB5 /* LoginValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidation.swift; sourceTree = "<group>"; };
 		38D6187527B92D7400E00CB5 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		38D6187827B94B4400E00CB5 /* ExamInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamInteractor.swift; sourceTree = "<group>"; };
@@ -99,6 +113,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		386A287727BB88C00095E8DF /* ExamDetail */ = {
+			isa = PBXGroup;
+			children = (
+				386A287827BB88E00095E8DF /* ExamDetailViewController.swift */,
+				386A287A27BB8A720095E8DF /* ExamDetailInteractor.swift */,
+				386A287C27BB8C2C0095E8DF /* ExamDetailRouter.swift */,
+				386A287E27BB90A50095E8DF /* ExamDetailPresenter.swift */,
+				386A288027BB93830095E8DF /* ExamDetailModels.swift */,
+			);
+			path = ExamDetail;
+			sourceTree = "<group>";
+		};
+		386A288227BB9CCD0095E8DF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				386A288327BB9CD90095E8DF /* Padding.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		38D6187727B94B2B00E00CB5 /* Exams */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +142,7 @@
 				38D6187C27B94B6400E00CB5 /* ExamPresenter.swift */,
 				38D6187F27B94B8E00E00CB5 /* ExamRouter.swift */,
 				38B5428027BA4AB100DAD599 /* ExamsTableViewCell.swift */,
+				386A287527BB85D90095E8DF /* ExamModels.swift */,
 			);
 			path = Exams;
 			sourceTree = "<group>";
@@ -117,7 +152,7 @@
 			children = (
 				38D6187327B8F93700E00CB5 /* LoginValidation.swift */,
 				38F7C8EF27B7E74400D628DD /* PhoneMask.swift */,
-				38B5428227BA4C4600DAD599 /* Posts.swift */,
+				38B5428227BA4C4600DAD599 /* Exams.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -145,6 +180,8 @@
 		38DA422027B689B400FD9D33 /* LoginTestingApp */ = {
 			isa = PBXGroup;
 			children = (
+				386A288227BB9CCD0095E8DF /* Helpers */,
+				386A287727BB88C00095E8DF /* ExamDetail */,
 				38D6187E27B94B7500E00CB5 /* Models */,
 				38D6187727B94B2B00E00CB5 /* Exams */,
 				38F7C8EB27B7E47000D628DD /* NetworkWorkingLogic.swift */,
@@ -388,18 +425,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				38F7C8F527B7FE5300D628DD /* AuthPresenter.swift in Sources */,
+				386A288427BB9CD90095E8DF /* Padding.swift in Sources */,
 				38D6187D27B94B6400E00CB5 /* ExamPresenter.swift in Sources */,
+				386A287627BB85D90095E8DF /* ExamModels.swift in Sources */,
 				38F7C8F027B7E74400D628DD /* PhoneMask.swift in Sources */,
 				38DA422627B689B400FD9D33 /* LoginViewController.swift in Sources */,
+				386A287F27BB90A50095E8DF /* ExamDetailPresenter.swift in Sources */,
+				386A287B27BB8A720095E8DF /* ExamDetailInteractor.swift in Sources */,
 				38DA422227B689B400FD9D33 /* AppDelegate.swift in Sources */,
 				38D6187B27B94B5200E00CB5 /* ExamWorker.swift in Sources */,
 				38DA423627B6982500FD9D33 /* Extensions+UIView.swift in Sources */,
-				38B5428327BA4C4600DAD599 /* Posts.swift in Sources */,
+				38B5428327BA4C4600DAD599 /* Exams.swift in Sources */,
+				386A288127BB93830095E8DF /* ExamDetailModels.swift in Sources */,
 				38D6188027B94B8E00E00CB5 /* ExamRouter.swift in Sources */,
 				38F7C8EC27B7E47000D628DD /* NetworkWorkingLogic.swift in Sources */,
+				386A287D27BB8C2C0095E8DF /* ExamDetailRouter.swift in Sources */,
 				38F7C8F327B7EA8B00D628DD /* AuthInteractor.swift in Sources */,
 				38B5428127BA4AB100DAD599 /* ExamsTableViewCell.swift in Sources */,
 				38F7C8EE27B7E6D400D628DD /* AuthWorker.swift in Sources */,
+				386A287927BB88E00095E8DF /* ExamDetailViewController.swift in Sources */,
 				38D6187927B94B4400E00CB5 /* ExamInteractor.swift in Sources */,
 				38D6187427B8F93700E00CB5 /* LoginValidation.swift in Sources */,
 				38DA423827B6A08C00FD9D33 /* DevExamListViewController.swift in Sources */,

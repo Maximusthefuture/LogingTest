@@ -14,14 +14,14 @@ enum SortBy {
 }
 
 protocol ExamPresentationLogic {
-    func presentFetchedExams(_ response: [Post])
+    func presentFetchedExams(_ response: [Exam])
 }
 
 class ExamPresenter: ExamPresentationLogic {
     
     weak var viewController: DevExamListViewController?
     
-    func presentFetchedExams(_ response: [Post]) {
+    func presentFetchedExams(_ response: [Exam]) {
 //        let sorted = response.sorted(by: .)
         viewController?.displayFetchedExams(response)
     }

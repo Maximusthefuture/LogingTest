@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post: Codable {
+struct Exam: Codable {
     let id, title, text, image: String
     let sort: Int
     let date: String
@@ -22,4 +22,4 @@ struct Post: Codable {
     }
 }
 
-typealias Posts = [Post]
+typealias Exams = [Exam]
