@@ -91,9 +91,9 @@ class LoginViewController: UIViewController {
        let query: [String: AnyObject] = [
            // kSecAttrService,  kSecAttrAccount, and kSecClass
            // uniquely identify the item to read in Keychain
-           kSecAttrService as String: service as AnyObject,
+//           kSecAttrService as String: service as AnyObject,
            kSecAttrAccount as String: account as AnyObject,
-           kSecClass as String: kSecClassGenericPassword,
+           kSecClass as String: kSecClassInternetPassword,
            
            // kSecMatchLimitOne indicates keychain should read
            // only the most recent item matching this query
@@ -101,7 +101,7 @@ class LoginViewController: UIViewController {
 
            // kSecReturnData is set to kCFBooleanTrue in order
            // to retrieve the data for the item
-           kSecReturnData as String: kCFBooleanTrue
+//           kSecReturnData as String: kCFBooleanTrue
        ]
 
        // SecItemCopyMatching will attempt to copy the item
@@ -111,6 +111,8 @@ class LoginViewController: UIViewController {
            query as CFDictionary,
            &itemCopy
        )
+        
+        print("STATUS IN LOGIN ", status)
 
        // errSecItemNotFound is a special status indicating the
        // read item does not exist. Throw itemNotFound so the

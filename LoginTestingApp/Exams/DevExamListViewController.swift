@@ -10,6 +10,7 @@ import UIKit
 import SDWebImage
 import Security
 
+
 protocol ExamDisplayLogic: AnyObject {
     func displayFetchedExams(_ viewModel: ExamModels.FetchExams.ViewModel)
     func displayRefreshedExams(_ viewModel: ExamModels.FetchExams.ViewModel, _ indexPaths: [Int])
@@ -42,7 +43,6 @@ class DevExamListViewController: UIViewController {
         setup()
 //        requestToFetchExams()
         startTimer()
-        saveToKeyChain(password: "devExam18", account: "79005868675", service: "com.login")
     }
     
     
@@ -88,25 +88,7 @@ class DevExamListViewController: UIViewController {
         
     }
     
-    func saveToKeyChain(password: String, account: String, service: String)  {
-       let query: [String: AnyObject] = [
-           // kSecAttrService,  kSecAttrAccount, and kSecClass
-           // uniquely identify the item to save in Keychain
-        kSecAttrService as String: service as AnyObject,
-           kSecAttrAccount as String: account as AnyObject,
-           kSecClass as String: kSecClassGenericPassword,
-           
-           // kSecValueData is the item value to save
-           kSecValueData as String: password as AnyObject
-       ]
-       
-       // SecItemAdd attempts to add the item identified by
-       // the query to keychain
-       SecItemAdd(
-           query as CFDictionary,
-           nil
-       )
-   }
+
     
     
     private func configureSortSegmentControl() {

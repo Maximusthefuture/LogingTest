@@ -41,6 +41,10 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
             if let success = success {
                 self.presenter?.presentSignInData(isSuccess: success.success)
             }
+            if success?.success == true {
+                print("SUCCESS BABY")
+                self.worker.saveToKeyChain(password: password, account: phoneNumber, service: "com.login")
+            }
         }
     }
 }
