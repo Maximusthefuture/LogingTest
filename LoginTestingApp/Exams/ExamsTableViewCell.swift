@@ -10,8 +10,6 @@ import UIKit
 
 class ExamsTableViewCell: UITableViewCell {
     
-    
-    
     let picture: UIImageView = {
         let image = UIImageView(
             frame: .init(

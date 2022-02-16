@@ -12,6 +12,8 @@ protocol AuthBusinessLogic {
     func getPhoneMask(_ request: AuthModels.Fetch.Request)
     //    func loginUser(request: String)
     func singInUser(phoneNumber: String, password: String)
+    func fetchPassword(_ request: AuthModels.Fetch.Request)
+    
 }
 
 protocol AuthDataStore {
@@ -21,7 +23,7 @@ protocol AuthDataStore {
 }
 
 class AuthInteractor: AuthBusinessLogic, AuthDataStore {
-    
+   
     var phoneMask: PhoneMask?
     var phoneNumber: String?
     var password: String?
@@ -29,10 +31,30 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
     var presenter: AuthPresentationLogic?
     lazy var worker: AuthWorkerLogic = AuthWorker()
     
+    
+    private func getLoginState() -> LoginState {
+        return worker.getLoginState()
+    }
+    
     func getPhoneMask(_  request: AuthModels.Fetch.Request) {
         worker.getPhoneMask { phoneMask in
             let response = AuthModels.Fetch.Response(phoneMask: phoneMask?.phoneMask ?? "+7 (XXX) XXX XXX")
-            self.presenter?.presentPhoneMask(response)
+            switch self.getLoginState() {
+            case .firstTime:
+                self.presenter?.presentPhoneMask(response)
+            case .loggedIn:
+                break
+            case .loggedOut:
+                break
+            }
+           
+        }
+    }
+    
+    func fetchPassword(_ request: AuthModels.Fetch.Request) {
+        worker.getPasswordFromKeyChain { phone, password in
+            let response = AuthModels.Fetch.ResponseKeyChain(phone: phone, password: password)
+            self.presenter?.presentPassword(response)
         }
     }
     
@@ -42,8 +64,9 @@ class AuthInteractor: AuthBusinessLogic, AuthDataStore {
                 self.presenter?.presentSignInData(isSuccess: success.success)
             }
             if success?.success == true {
-                print("SUCCESS BABY")
-                self.worker.saveToKeyChain(password: password, account: phoneNumber, service: "com.login")
+                self.worker.saveToKeyChain(password: password, phoneNumber: phoneNumber)
+                self.worker.saveLoginState(loginState: .loggedIn)
+                
             }
         }
     }

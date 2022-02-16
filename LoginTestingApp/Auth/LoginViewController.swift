@@ -12,6 +12,7 @@ protocol AuthDisplayLogic: AnyObject {
     func displayPhoneMask(_ viewModel: AuthModels.Fetch.ViewModel)
     func showAlert()
     func moveToNextScreen()
+    func displayPassword(_ viewModel: AuthModels.Fetch.ViewModelKeyChain)
   
 }
 
@@ -70,8 +71,8 @@ class LoginViewController: UIViewController {
         setupNotificationObserver()
         setupTapGesture()
         setup()
-        self.passwordTextField.text = self.readPassword(service: "79005868675", account: "com.login")
-//        requestToFetchMask()
+        requestToFetchMask()
+        requestToFetchPassword()
         
     }
    
@@ -86,59 +87,11 @@ class LoginViewController: UIViewController {
         interactor?.getPhoneMask(request)
     }
     
-    
-    func readPassword(service: String, account: String) -> String {
-       let query: [String: AnyObject] = [
-           // kSecAttrService,  kSecAttrAccount, and kSecClass
-           // uniquely identify the item to read in Keychain
-//           kSecAttrService as String: service as AnyObject,
-           kSecAttrAccount as String: account as AnyObject,
-           kSecClass as String: kSecClassInternetPassword,
-           
-           // kSecMatchLimitOne indicates keychain should read
-           // only the most recent item matching this query
-           kSecMatchLimit as String: kSecMatchLimitOne,
+    private func requestToFetchPassword() {
+        let request = AuthModels.Fetch.Request()
+        interactor?.fetchPassword(request)
+    }
 
-           // kSecReturnData is set to kCFBooleanTrue in order
-           // to retrieve the data for the item
-//           kSecReturnData as String: kCFBooleanTrue
-       ]
-
-       // SecItemCopyMatching will attempt to copy the item
-       // identified by query to the reference itemCopy
-       var itemCopy: AnyObject?
-       let status = SecItemCopyMatching(
-           query as CFDictionary,
-           &itemCopy
-       )
-        
-        print("STATUS IN LOGIN ", status)
-
-       // errSecItemNotFound is a special status indicating the
-       // read item does not exist. Throw itemNotFound so the
-       // client can determine whether or not to handle
-       // this case
-   //    guard status != errSecItemNotFound else {
-   //        throw KeychainError.itemNotFound
-   //    }
-       
-       // Any status other than errSecSuccess indicates the
-       // read operation failed.
-   //    guard status == errSecSuccess else {
-   //        throw KeychainError.unexpectedStatus(status)
-   //    }
-
-       // This implementation of KeychainInterface requires all
-       // items to be saved and read as Data. Otherwise,
-       // invalidItemFormat is thrown
-       guard let password = itemCopy as? String else {
-           return ""
-       }
-
-       return password
-   }
-    
-   
     fileprivate func viewsInit() {
         phoneNumberTextField.borderStyle = .none
         passwordTextField.borderStyle = .none
@@ -204,6 +157,8 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: AuthDisplayLogic {
+ 
+    
     func moveToNextScreen() {
         router?.routeToExamList()
     }
@@ -218,6 +173,11 @@ extension LoginViewController: AuthDisplayLogic {
             self.present(alert, animated: true)
           
         }
+    }
+    
+    func displayPassword(_ viewModel: AuthModels.Fetch.ViewModelKeyChain) {
+        self.phoneNumberTextField.text = viewModel.phone
+        self.passwordTextField.text = viewModel.password
     }
     
     func displayPhoneMask(_ viewModel: AuthModels.Fetch.ViewModel) {

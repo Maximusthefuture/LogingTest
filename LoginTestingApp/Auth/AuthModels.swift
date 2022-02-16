@@ -23,6 +23,16 @@ struct AuthModels {
             let phoneMask: String
         }
         
+        struct ResponseKeyChain {
+            let phone: String
+            let password: String
+        }
+        
+        struct ViewModelKeyChain {
+            let phone: String
+            let password: String
+        }
+        
         struct ViewModel {
             let phoneMask: String
         }

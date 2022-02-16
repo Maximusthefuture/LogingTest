@@ -41,7 +41,7 @@ class DevExamListViewController: UIViewController {
         configureSortSegmentControl()
         tableViewInit()
         setup()
-//        requestToFetchExams()
+        requestToFetchExams()
         startTimer()
     }
     
@@ -84,12 +84,7 @@ class DevExamListViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 500
-        
-        
     }
-    
-
-    
     
     private func configureSortSegmentControl() {
         sortSegmentsControl.selectedSegmentIndex = 0
